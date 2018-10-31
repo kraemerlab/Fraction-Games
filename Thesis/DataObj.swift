@@ -11,12 +11,14 @@ import FirebaseDatabase
 
 struct DataObj {
     let key: String
+    let date: String
     let game: String
     let ref: FIRDatabaseReference?
     var info: String
     
-    init(info: String, game: String, key: String = "") {
+    init(date: String, info: String, game: String, key: String = "") {
         self.key = key
+        self.date = date
         self.game = game
         self.info = info
         self.ref = nil
@@ -25,6 +27,7 @@ struct DataObj {
     init(snapshot: FIRDataSnapshot) {
         key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
+        date = snapshotValue["date"] as! String
         game = snapshotValue["game"] as! String
         info = snapshotValue["info"] as! String
         ref = snapshot.ref
@@ -33,6 +36,7 @@ struct DataObj {
     func toAnyObject() -> Any {
         return [
             "game": game,
+            "date": date,
             "info": info
         ]
     }

@@ -480,7 +480,7 @@ class SharkScene : SKScene {
         let head = array[0]
         
         var ret = [[Float]]()
-        var subcombos = combo(array: array, k: k - 1)
+        let subcombos = combo(array: array, k: k - 1)
         for subcombo in subcombos {
             var sub = subcombo
             sub.insert(head, at: 0)
